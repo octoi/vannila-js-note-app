@@ -9,28 +9,21 @@ export default class NotesAPI {
 
     static saveNote(noteToSave) {
         const notes = NotesAPI.getAllNotes();
-        // 1626162247963
         const existing = notes.find(note => note.id === noteToSave.id);
 
+        if (existing) {
 
-        // if (existing) {
+            existing.title = noteToSave.title;
+            existing.body = noteToSave.body;
+            existing.updated = new Date().toISOString();
 
-        //     existing.title = noteToSave.title;
-        //     existing.body = noteToSave.body;
-        //     existing.updated = new Date().toISOString();
+        } else {
 
-        // } else {
+            noteToSave.id = Date.now();
+            noteToSave.updated = new Date().toISOString();
+            notes.push(noteToSave);
 
-        //     noteToSave.id = Date.now();
-        //     noteToSave.updated = new Date().toISOString();
-        //     notes.push(noteToSave);
-
-        // }
-
-        noteToSave.id = Date.now();
-        noteToSave.updated = new Date().toISOString();
-        notes.push(noteToSave);
-
+        }
 
         localStorage.setItem('notes', JSON.stringify(notes));
     }
