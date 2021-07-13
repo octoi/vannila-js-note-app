@@ -54,4 +54,15 @@ export default class NotesView {
         `;
     }
 
+    updateNoteList(notes) {
+        const noteListContainer = this.root.querySelector('.notes-list');
+
+        noteListContainer.innerHTML = ''; // clear HTML
+
+        for (const note of notes) {
+            const html = this._createListItemHTML(note.id, note.title, note.body, new Date(note.updated));
+            noteListContainer.insertAdjacentHTML('beforeend', html);
+        }
+    }
+
 }
