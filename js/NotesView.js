@@ -69,6 +69,14 @@ export default class NotesView {
             noteListItem.addEventListener('click', () => {
                 this.onNoteSelect(noteListItem.dataset.noteId);
             });
+
+            noteListItem.addEventListener('dblclick', () => {
+                const doDelete = confirm('Are you sure you want to delete this note ??');
+
+                if (doDelete) {
+                    this.onNoteDelete(noteListItem.dataset.noteId);
+                }
+            });
         });
     }
 
