@@ -9,7 +9,7 @@ export default class NotesAPI {
 
     static saveNote(noteToSave) {
         const notes = NotesAPI.getAllNotes();
-        const existing = notes.find(note => note.id === noteToSave.id);
+        const existing = notes.find(note => note.id == noteToSave.id);
 
         if (existing) {
 
@@ -30,7 +30,7 @@ export default class NotesAPI {
 
     static deleteNote(id) {
         const notes = NotesAPI.getAllNotes();
-        const wantedNotes = notes.filter(note => note.id !== id);
+        const wantedNotes = notes.filter(note => note.id != id);
 
         localStorage.setItem('notes', JSON.stringify(wantedNotes));
     }
