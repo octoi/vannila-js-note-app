@@ -34,7 +34,7 @@ export default class NotesView {
             });
         });
 
-        // TODO: hide note preview by default
+        this.updateNotePreviewVisibility(false);
     }
 
     _createListItemHTML(id, title, body, updated) {
@@ -84,11 +84,15 @@ export default class NotesView {
         this.root.querySelector('.notes-title').value = note.title;
         this.root.querySelector('.notes-body').value = note.body;
 
-        this.root.querySelectorAll('.note-list-items').forEach(noteListItem => {
-            noteListItem.classList.remove('note-list-item--selected');
+        this.root.querySelectorAll('.notes-list-items').forEach(noteListItem => {
+            noteListItem.classList.remove('notes-list-item--selected');
         });
 
-        this.root.querySelector(`.notes-list-item[data-note-id=${note.id}]`).classList.add('note-list-item--selected');
+        this.root.querySelector(`.notes-list-item[data-note-id="${note.id}"]`).classList.add('notes-list-item--selected');
+    }
+
+    updateNotePreviewVisibility(visible) {
+        this.root.querySelector('.notes-preview').style.visibility = visible ? 'visible' : 'hidden';
     }
 
 }
