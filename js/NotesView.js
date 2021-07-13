@@ -63,6 +63,13 @@ export default class NotesView {
             const html = this._createListItemHTML(note.id, note.title, note.body, new Date(note.updated));
             noteListContainer.insertAdjacentHTML('beforeend', html);
         }
+
+        // Add select/delete event for east list item
+        noteListContainer.querySelectorAll('.notes-list-item').forEach(noteListItem => {
+            noteListItem.addEventListener('click', () => {
+                this.onNoteSelect(noteListItem.dataset.noteId);
+            });
+        });
     }
 
 }
