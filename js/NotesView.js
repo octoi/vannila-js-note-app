@@ -45,7 +45,7 @@ export default class NotesView {
                 <div class="notes-small-title">${title}</div>
                 <div class="notes-small-body">
                     ${body.substring(0, MAX_BODY_LENGTH)}
-                    ${body.length > MAX_BODY_LENGTH && "..."}
+                    ${body.length > MAX_BODY_LENGTH ? "..." : ""}
                 </div>
                 <div class="notes-small-updated">
                     ${updated.toLocaleString(undefined, { dateStyle: "full", timeStyle: "short" })}
@@ -78,6 +78,11 @@ export default class NotesView {
                 }
             });
         });
+    }
+
+    updateActiveNote(note) {
+        this.root.querySelector('.notes-title').value = note.title;
+        this.root.querySelector('.notes-body').value = note.body;
     }
 
 }
