@@ -3,10 +3,18 @@ import NotesView from './NotesView.js';
 
 const app = document.getElementById('app');
 const view = new NotesView(app, {
-    onNoteSelect: () => {
-
+    onNoteAdd: () => {
+        alert("Add note")
     },
-    onNoteSelect: () => {
-
+    onNoteEdit: (newTitle, newBody) => {
+        console.log(newBody);
     },
+    onNoteSelect: (id) => {
+        // view.updateActiveNote(NotesAPI.getAllNotes()[id]);
+    },
+    onNoteDelete: (id) => {
+        alert(id);
+    }
 })
+
+view.updateNoteList(NotesAPI.getAllNotes());

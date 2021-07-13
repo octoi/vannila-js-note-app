@@ -83,6 +83,12 @@ export default class NotesView {
     updateActiveNote(note) {
         this.root.querySelector('.notes-title').value = note.title;
         this.root.querySelector('.notes-body').value = note.body;
+
+        this.root.querySelectorAll('.note-list-items').forEach(noteListItem => {
+            noteListItem.classList.remove('note-list-item--selected');
+        });
+
+        this.root.querySelector(`.notes-list-item[data-note-id=${note.id}]`).classList.add('note-list-item--selected');
     }
 
 }
