@@ -32,7 +32,26 @@ export default class NotesView {
 
                 this.onNoteEdit(updatedTitle, updatedBody);
             });
-        })
+        });
+
+        // TODO: hide note preview by default
+    }
+
+    _createListItemHTML(id, title, body, updated) {
+        const MAX_BODY_LENGTH = 60;
+
+        return `
+            <div class="notes-list-item" data-note-id="${id}">
+                <div class="notes-small-title">${title}</div>
+                <div class="notes-small-body">
+                    ${body.substring(0, MAX_BODY_LENGTH)}
+                    ${body.length > MAX_BODY_LENGTH && "..."}
+                </div>
+                <div class="notes-small-updated">
+                    ${updated.toLocaleString(undefined, { dateStyle: "full", timeStyle: "short" })}
+                </div>
+            </div>
+        `;
     }
 
 }
